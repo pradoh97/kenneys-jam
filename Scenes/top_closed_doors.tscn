@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://xguq8dxprvav"]
+
+[ext_resource type="Script" path="res://Scenes/top_closed_doors.gd" id="1_024dl"]
+[ext_resource type="Texture2D" uid="uid://ream4cent1d8" path="res://top_closed_doors.png" id="2_uk8ya"]
+[ext_resource type="AudioStream" uid="uid://bsk83b4o0d1xu" path="res://DoorOpen.wav" id="3_eyqx6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kcpgm"]
+size = Vector2(32, 16)
+
+[node name="top_closed_doors" type="StaticBody2D"]
+disable_mode = 1
+collision_layer = 3
+script = ExtResource("1_024dl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -8)
+texture = ExtResource("2_uk8ya")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_kcpgm")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_eyqx6")

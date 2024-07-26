@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfoa5bvl7v7h"]
+
+[ext_resource type="Script" path="res://Scenes/breadcrumb.gd" id="1_rcblh"]
+[ext_resource type="Texture2D" uid="uid://jy7uf4urn55t" path="res://rope.png" id="2_68ecw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1o1n"]
+size = Vector2(12, 12)
+
+[node name="breadcrumb" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_rcblh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e1o1n")
+
+[node name="rope" type="Sprite2D" parent="."]
+texture = ExtResource("2_68ecw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq8qay1o0w850"]
+
+[ext_resource type="PackedScene" uid="uid://c5lwj143okpor" path="res://Scenes/welcome_screen.tscn" id="1_wabxf"]
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_xd67g"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_xd67g")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -198.0
+offset_top = -109.0
+offset_right = -198.0
+offset_bottom = -109.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="welcome_screen" parent="." instance=ExtResource("1_wabxf")]
+offset = Vector2(960, 480)
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 960, 480)

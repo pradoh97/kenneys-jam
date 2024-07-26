@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu04ewdkg2yyq"]
+
+[ext_resource type="Script" path="res://Scenes/item.gd" id="1_7bac7"]
+[ext_resource type="Texture2D" uid="uid://xb5b8qnqjibq" path="res://item.png" id="1_qcjmw"]
+[ext_resource type="AudioStream" uid="uid://dlr516rei6wpo" path="res://RopeGet-1.wav" id="3_5s6of"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nrdbc"]
+
+[node name="barrel" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_7bac7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nrdbc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qcjmw")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_5s6of")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

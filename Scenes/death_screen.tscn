@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://dij3erek8bvsg"]
+
+[ext_resource type="Texture2D" uid="uid://bsup5t21gx7rt" path="res://panel-transparent-center-004.png" id="1_jkcsd"]
+[ext_resource type="Texture2D" uid="uid://bherj7wsm0kj2" path="res://divider-fade-005.png" id="2_xkiiy"]
+
+[node name="Death Screen" type="CanvasLayer"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0.499974, 22.25)
+scale = Vector2(8.15625, 0.927083)
+texture = ExtResource("1_jkcsd")
+region_enabled = true
+region_rect = Rect2(8.11629, -0.100342, 32.0712, 48.1003)
+region_filter_clip_enabled = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+texture_filter = 1
+offset_left = -55.0
+offset_top = 9.24999
+offset_right = 115.0
+offset_bottom = 65.25
+scale = Vector2(0.65, 0.65)
+bbcode_enabled = true
+text = "[center][color=red]You Died"
+fit_content = true
+scroll_active = false
+text_direction = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+texture_filter = 1
+offset_left = -24.0
+offset_top = 18.25
+offset_right = 146.0
+offset_bottom = 74.25
+scale = Vector2(0.3, 0.3)
+bbcode_enabled = true
+text = "[center][color=blue]
+[wave amp=30 freq=2]Press R to restart"
+fit_content = true
+scroll_active = false
+text_direction = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-83, 22)
+texture = ExtResource("2_xkiiy")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(83, 22)
+rotation = -3.14159
+texture = ExtResource("2_xkiiy")
