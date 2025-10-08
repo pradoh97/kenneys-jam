@@ -9,3 +9,7 @@ func rotate_vertical():
 
 func rotate_horizontal():
 	$rope.rotation_degrees = 90
+
+func use_corner(new_rotation):
+	$rope.texture = load("res://bent_rope.png")
+	$rope.rotation_degrees = new_rotation

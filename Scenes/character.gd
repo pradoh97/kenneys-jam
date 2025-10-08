@@ -9,8 +9,6 @@ const TILE_SIZE: int = 16
 @onready var win_screen = $UI/HBoxContainer/win_screen
 @onready var level1 : PackedScene = load("res://Scenes/level1.tscn")
 
-signal pick
-
 var start_position
 var died: bool = false
 var previous_position = Vector2(0, 0)
@@ -75,14 +73,14 @@ func move(delta):
 				prev_char_pos = -1
 			else:
 				prev_char_pos = 1
-			
+
 			if not bread_detector.is_colliding() and not just_ate:
 				eating_bread = false
 			if not eating_bread:
 				drop_bread(input_direction)
 			just_ate = false
 			$AnimationPlayer.play("walk")
-			
+
 		else:
 			position = previous_position + (TILE_SIZE * input_direction * percent_moved_to_next_tile)
 			character.rotation_degrees = 10 * (input_direction.x + input_direction.y) * prev_char_pos
@@ -90,7 +88,7 @@ func move(delta):
 	else:
 		$AnimationPlayer.play("idle")
 		is_moving = false
-	
+
 	move_and_slide()
 
 
@@ -99,9 +97,37 @@ func drop_bread(direction):
 	breadcrumb_scene = breadcrumb_scene.instantiate()
 	breadcrumb_scene.position = previous_position
 	if direction.y != 0:
-		breadcrumb_scene.rotate_vertical()
+		if breadcrumbs.size() and global_position.x != breadcrumbs[-1].global_position.x:
+			var went_right = global_position.x - breadcrumbs[-1].global_position.x > 0
+			var went_upwards = global_position.y - breadcrumbs[-1].global_position.y < 0
+			if went_upwards:
+				if went_right:
+					breadcrumb_scene.use_corner(0)
+				else:
+					breadcrumb_scene.use_corner(90)
+			else:
+				if went_right:
+					breadcrumb_scene.use_corner(-90)
+				else:
+					breadcrumb_scene.use_corner(180)
+		else:
+			breadcrumb_scene.rotate_vertical()
 	if direction.x != 0:
-		breadcrumb_scene.rotate_horizontal()
+		if breadcrumbs.size() and global_position.y != breadcrumbs[-1].global_position.y:
+			var went_right = global_position.x - breadcrumbs[-1].global_position.x > 0
+			var went_upwards = global_position.y - breadcrumbs[-1].global_position.y < 0
+			if went_upwards:
+				if went_right:
+					breadcrumb_scene.use_corner(180)
+				else:
+					breadcrumb_scene.use_corner(270)
+			else:
+				if went_right:
+					breadcrumb_scene.use_corner(90)
+				else:
+					breadcrumb_scene.use_corner(0)
+		else:
+			breadcrumb_scene.rotate_horizontal()
 	level.drop_crumbs(breadcrumb_scene)
 	breadcrumbs.append(breadcrumb_scene)
 
@@ -123,7 +149,7 @@ func pick_bread(breadcrumb):
 		var index = breadcrumbs.find(breadcrumb)
 		var new_arr = breadcrumbs.slice(index)
 		breadcrumbs = breadcrumbs.slice(0, index)
-		
+
 		for crumb in new_arr:
 			eating_bread = true
 			just_ate = true
@@ -134,7 +160,7 @@ func pick_bread(breadcrumb):
 func pick_rope(amount = 40):
 	rope+=amount
 	level.update_rope(rope)
-	
+
 func death():
 	if not $end_screen.stream:
 		$end_screen.stream = load("res://Failure.mp3")

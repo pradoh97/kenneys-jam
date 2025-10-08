@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cfoa5bvl7v7h"]
 
-[ext_resource type="Script" path="res://Scenes/breadcrumb.gd" id="1_rcblh"]
+[ext_resource type="Script" uid="uid://xhm35di11tmv" path="res://Scenes/breadcrumb.gd" id="1_rcblh"]
 [ext_resource type="Texture2D" uid="uid://jy7uf4urn55t" path="res://rope.png" id="2_68ecw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1o1n"]
